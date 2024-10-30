@@ -12,4 +12,13 @@ test("timeout exception", async ({ page }) => {
   await expect(page.locator("#output-text")).toBeVisible();
   await expect(page.locator("#output-password")).toBeVisible();
   await expect(page.locator("#output-date")).toBeVisible();
+
+  // click on clear inputs
+  await page.getByRole("button", { name: "Clear Inputs" }).click();
+
+  // assert that inputs are no longer visible
+  await expect(page.locator("#output-number")).toBeHidden();
+  await expect(page.locator("#output-text")).toBeHidden();
+  await expect(page.locator("#output-password")).toBeHidden();
+  await expect(page.locator("#output-date")).toBeHidden();
 });
